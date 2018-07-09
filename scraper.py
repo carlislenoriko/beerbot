@@ -3,6 +3,7 @@ import requests
 import os.path
 import json
 import tweepy
+import secrets
 
 page = requests.get('https://fieldworkbrewing.com/berkeley/')
 tree = html.fromstring(page.content)
@@ -39,4 +40,11 @@ with open('beers.json', 'w') as outfile:
   json.dump(name_list, outfile)
 
 
-# rewrite previous.json
+auth = tweepy.OAuthHandler(secrets.consumer_key, secrets.consumer_secret)
+auth.set_access_token(secrets.access_token, secrets.access_token_secret)
+
+api = tweepy.API(auth)
+
+public_tweets = api.home_timeline()
+for tweet in public_tweets:
+    print(tweet.text)
