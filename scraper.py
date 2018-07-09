@@ -5,6 +5,11 @@ import json
 import tweepy
 import secrets
 
+auth = tweepy.OAuthHandler(secrets.consumer_key, secrets.consumer_secret)
+auth.set_access_token(secrets.access_token, secrets.access_token_secret)
+
+api = tweepy.API(auth)
+
 page = requests.get('https://fieldworkbrewing.com/berkeley/')
 tree = html.fromstring(page.content)
 
@@ -30,7 +35,7 @@ for beer in current_beer:
   name = beer.xpath('h1/text()')[0]
   description = beer.xpath('h2/text()')[0]
   if name not in old_beers:
-    print (f'NEW BEER ALERT: {name} is a {description}!!!')
+    api.update_status(f'NEW BEER ALERT: {name} is a {description}!!!')
   name_list.append(name)
 
 # json_attempt = json.dumps(name_list)
@@ -40,11 +45,3 @@ with open('beers.json', 'w') as outfile:
   json.dump(name_list, outfile)
 
 
-auth = tweepy.OAuthHandler(secrets.consumer_key, secrets.consumer_secret)
-auth.set_access_token(secrets.access_token, secrets.access_token_secret)
-
-api = tweepy.API(auth)
-
-public_tweets = api.home_timeline()
-for tweet in public_tweets:
-    print(tweet.text)
