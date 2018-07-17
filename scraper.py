@@ -44,4 +44,3 @@ for beer in current_beer:
 with open('beers.json', 'w') as outfile:
   json.dump(name_list, outfile)
 
-
