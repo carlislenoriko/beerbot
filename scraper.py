@@ -36,6 +36,7 @@ for beer in current_beer:
   description = beer.xpath('h2/text()')[0]
   if name not in old_beers:
     api.update_status(f'NEW BEER ALERT: {name} is a {description}!!!')
+    print("NEW BEER OH SHIT")
   name_list.append(name)
 
 # json_attempt = json.dumps(name_list)
@@ -43,4 +44,6 @@ for beer in current_beer:
 
 with open('beers.json', 'w') as outfile:
   json.dump(name_list, outfile)
+
+print("AYYYYYY")
 
