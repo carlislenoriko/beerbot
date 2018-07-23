@@ -28,14 +28,16 @@ old_beers = []
 if os.path.isfile("beers.json"):
   old_beers = json.load(open('beers.json'))
 
-# old_beers = ["Doge", "Nyancat", "Cherry Parfait", "Cloud Control", "End of Years", "Favourite Melodies", "Field Trial Series", "Dickbutt", "Ghost of a Hop", "Hacking the Mainframe", "In Bloom", "Kolsch City Rockers", "Mount Sierra", "Past The Breakers", "Simple Joys", "Where Belges Dare"]
-
+vowels = ('A', 'E', 'I', 'O', 'U')
 name_list = []
 for beer in current_beer:
   name = beer.xpath('h1/text()')[0]
   description = beer.xpath('h2/text()')[0]
   if name not in old_beers:
-    api.update_status(f'NEW BEER ALERT: {name} is a {description}!!!')
+    if description.startswith(vowels):
+      api.update_status(f'NEW BEER ALERT: {name} is an {description}!!!')
+    else:
+      api.update_status(f'NEW BEER ALERT: {name} is a {description}!!!')   
     print("NEW BEER OH SHIT")
   name_list.append(name)
 
