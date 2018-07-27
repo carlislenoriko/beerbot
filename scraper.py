@@ -36,7 +36,7 @@ for beer in current_beer:
     print("NEW BEER OH SHIT")
   name_list.append(name)
 
-# Beer JSON either opened or created
+# Beer JSON either overwritten or created
 with open('beers.json', 'w') as outfile:
   json.dump(name_list, outfile)
 
