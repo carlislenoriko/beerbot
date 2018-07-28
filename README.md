@@ -10,6 +10,19 @@ A little Twitter bot that tweets when new beers are on tap at Fieldwork Brewing 
 * LXML
 * Tweepy (only works with Python 3.6)
 
+## Please Note
+
+The scraper.py file is importing a secrets.py file that is not in this repo. Get your own Twitter auths on Twitter.com.
+
+My secrets.py file looks like:
+
+```
+access_token = "long auth string"
+access_token_secret = "long auth string"
+consumer_key = "long auth string"
+consumer_secret = "long auth string"
+```
+
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
