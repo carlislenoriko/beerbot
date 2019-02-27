@@ -14,7 +14,7 @@ api = tweepy.API(auth)
 page = requests.get('https://fieldworkbrewing.com/berkeley/')
 tree = html.fromstring(page.content)
 
-current_beer = tree.xpath('//ul[@class="taplist-content"]//li[@class="beer ontap "]//div[@class="beer-content"]')
+current_beer = tree.xpath('.//li[@class="beer ontap "]//a[@class="beer-wrapper"]//span[@class="beer-content"]')
 
 # If JSON exists, is opened and put in old_beers
 old_beers = []
